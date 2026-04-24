@@ -43,7 +43,7 @@ The workflow will run automatically and the downloaded files will appear in the 
 Downloads each file and saves it by its original filename.
 
 ```
-download: URL1 URL2 URL3
+downlod: https://github.com/therealaleph/MasterHttpRelayVPN-RUST/releases/download/v1.4.0/mhrv-rs-android-arm64-v8a-v1.4.0.apk
 ```
 
 **Examples:**
