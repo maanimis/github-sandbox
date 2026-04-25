@@ -164,7 +164,7 @@ jobs:
               yt-dlp --version
 
               echo "=== DEBUG: yt-dlp verbose output ==="
-              yt-dlp --verbose --cookies youtube_cookies.txt -o "tmp_downloads/%(title)s.%(ext)s" "$URL"
+              yt-dlp --js-runtimes bun:/home/runner/.bun/bin --verbose --cookies youtube_cookies.txt -o "tmp_downloads/%(title)s.%(ext)s" "$URL"
 
             else
               echo "⬇️ Downloading with aria2: $URL"
