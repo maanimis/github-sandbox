@@ -43,7 +43,7 @@ The workflow will run automatically and the downloaded files will appear in the 
 Downloads each file and saves it by its original filename.
 
 ```
-download: URL1 URL2 URL3
+download: [URL1 URL2 URL3](https://github.com/2dust/v2rayNG/releases/download/2.0.18/v2rayNG_2.0.18_universal.apk)
 ```
 
 **Examples:**
