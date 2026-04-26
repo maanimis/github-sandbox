@@ -53,10 +53,10 @@ That's it — the workflow will use these cookies automatically.
 
 ### ⚠️ Cookies Expire
 
-YouTube rotates cookies frequently:
-- **Typical lifespan: 3-5 days** (due to YouTube's anti-bot measures)
-- You may need to re-export cookies periodically
-- If downloads start failing, fetch new cookies and update the secret
+YouTube rotates cookies frequently (typical lifespan 3-5 days) due to YouTube's anti-bot measures.
+You may need to re-export cookies periodically.
+If downloads start failing, fetch new cookies and update the secret.
+**YouTube detects bot most of the time; cookies required almost always.**
 
 ---
 
@@ -139,6 +139,28 @@ The resulting archive will be named like: `archive_20250423_153012.zip`
 
 ---
 
+## ⬇️ Extracting split files
+
+If your download was split into multiple `.part_N` files (common with large files), reassemble them:
+
+### Linux / macOS
+
+```bash
+cat downloads/filename.part_* > downloads/original_filename
+```
+
+### Windows (Command Prompt)
+
+```cmd
+copy /b downloads\filename.part_* downloads\original_filename
+```
+
+### Windows (GUI)
+
+Use **7-Zip** → right-click the first `.part_1` file → "7-Zip" → "Combine files..." → save as original filename.
+
+---
+
 ## 👀 Checking the result
 
 After committing, you can monitor the workflow:
@@ -149,7 +171,7 @@ After committing, you can monitor the workflow:
 
 ---
 
-## ⚠️ Notes
+## Notes
 
 - URLs must be publicly accessible (no login required)
 - Separate multiple URLs with spaces
