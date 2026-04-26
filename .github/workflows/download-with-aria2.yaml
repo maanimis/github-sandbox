@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y aria2 python3 python3-pip python3-requests ffmpeg curl unzip
+          sudo apt-get install -y aria2 python3 python3-pip python3-requests ffmpeg curl pigz zstd
           pip3 install "yt-dlp[default]"
 
       - name: Install bun
@@ -82,9 +82,9 @@ jobs:
           done
 
           if [ "$MODE" = "zip" ]; then
-            ARCHIVE_NAME="tmp_downloads/archive_$(date +%Y%m%d_%H%M%S).zip"
-            zip -j "$ARCHIVE_NAME" tmp_downloads/*
-          fi
+              ARCHIVE_NAME="tmp_downloads/archive_$(date +%Y%m%d_%H%M%S).tar.gz"
+              tar -cvf - -C tmp_downloads . | pigz -k -p all > "$ARCHIVE_NAME"
+            fi
 
           for FILE in tmp_downloads/*; do
             [ -f "$FILE" ] || continue
@@ -94,8 +94,8 @@ jobs:
 
             if [ "$SIZE" -gt "$LIMIT" ]; then
               echo "Splitting: $BASENAME ($(( SIZE / 1024 / 1024 ))MB)"
-              zip -s 90m "downloads/${BASENAME}.zip" -j "$FILE"
-              echo "Parts: $(ls downloads/${BASENAME}* | wc -l)"
+              split -b 90M "$FILE" "downloads/${BASENAME}.part_"
+              echo "Parts: $(ls downloads/${BASENAME}.part_* | wc -l)"
             else
               cp "$FILE" "downloads/$BASENAME"
             fi
